@@ -2,14 +2,18 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/server.mjs",
+      "src": "src/routes/index.tsx",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/api/server.mjs"
+      "dest": "src/routes/index.tsx"
     }
-  ]
+  ],
+  "env": {
+    "SUPABASE_URL": "https://okavyudcwmsgwrzajknv.supabase.co",
+    "SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9rYXZ5dWRjd21zZ3dyemFqa252Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5MTc1MjcsImV4cCI6MjA5MjQ5MzUyN30.vkfEloLcS5onLfKispK4ZYLUHWMrgKPog4jrpoRQbyw"
+  }
 }

@@ -1,8 +1,0 @@
-{
-  "rewrites": [
-    { "source": "/auth", "destination": "/index.html" },
-    { "source": "/dashboard", "destination": "/index.html" },
-    { "source": "/", "destination": "/index.html" },
-    { "source": "/:slug", "destination": "/api/:slug" }
-  ]
-}

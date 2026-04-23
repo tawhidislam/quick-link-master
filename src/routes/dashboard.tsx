@@ -90,9 +90,13 @@ function Dashboard() {
       setError("Enter a valid URL starting with http:// or https://");
       return;
     }
-    const slug = customSlug.trim() || generateSlug();
+    // Strip leading slashes and take last path segment if user pasted a path
+    const rawSlug = customSlug.trim().replace(/^\/+/, "").split("/").pop() ?? "";
+    const slug = rawSlug || generateSlug();
     if (!isValidSlug(slug)) {
-      setError("Custom slug must be 3–32 chars: letters, numbers, _ or -");
+      setError(
+        `Custom slug "${slug}" is invalid. Use 3–32 characters: letters, numbers, _ or - only (no slashes or spaces).`,
+      );
       return;
     }
 

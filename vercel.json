@@ -1,6 +1,8 @@
-
 {
-  "routes": [
-    { "src": "/(.*)", "dest": "/" }
+  "rewrites": [
+    {
+      "source": "/:path*",
+      "destination": "https://link-love-it.lovable.app/:path*"
+    }
   ]
 }

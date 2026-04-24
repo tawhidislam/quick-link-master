@@ -9,11 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as HealthRouteImport } from './routes/health'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as SlugRouteImport } from './routes/$slug'
 import { Route as IndexRouteImport } from './routes/index'
 
+const HealthRoute = HealthRouteImport.update({
+  id: '/health',
+  path: '/health',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -40,12 +46,14 @@ export interface FileRoutesByFullPath {
   '/$slug': typeof SlugRoute
   '/auth': typeof AuthRoute
   '/dashboard': typeof DashboardRoute
+  '/health': typeof HealthRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$slug': typeof SlugRoute
   '/auth': typeof AuthRoute
   '/dashboard': typeof DashboardRoute
+  '/health': typeof HealthRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +61,14 @@ export interface FileRoutesById {
   '/$slug': typeof SlugRoute
   '/auth': typeof AuthRoute
   '/dashboard': typeof DashboardRoute
+  '/health': typeof HealthRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/$slug' | '/auth' | '/dashboard'
+  fullPaths: '/' | '/$slug' | '/auth' | '/dashboard' | '/health'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$slug' | '/auth' | '/dashboard'
-  id: '__root__' | '/' | '/$slug' | '/auth' | '/dashboard'
+  to: '/' | '/$slug' | '/auth' | '/dashboard' | '/health'
+  id: '__root__' | '/' | '/$slug' | '/auth' | '/dashboard' | '/health'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,10 +76,18 @@ export interface RootRouteChildren {
   SlugRoute: typeof SlugRoute
   AuthRoute: typeof AuthRoute
   DashboardRoute: typeof DashboardRoute
+  HealthRoute: typeof HealthRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/health': {
+      id: '/health'
+      path: '/health'
+      fullPath: '/health'
+      preLoaderRoute: typeof HealthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard': {
       id: '/dashboard'
       path: '/dashboard'
@@ -107,6 +124,7 @@ const rootRouteChildren: RootRouteChildren = {
   SlugRoute: SlugRoute,
   AuthRoute: AuthRoute,
   DashboardRoute: DashboardRoute,
+  HealthRoute: HealthRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

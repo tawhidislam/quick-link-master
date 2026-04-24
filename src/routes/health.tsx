@@ -182,7 +182,7 @@ function HealthPage() {
 }
 
 function StatusBadge({ state }: { state: ProbeState }) {
-  if (state === "ok") return <Badge className="bg-green-600 hover:bg-green-600">OK</Badge>;
+  if (state === "ok") return <Badge>OK</Badge>;
   if (state === "fail") return <Badge variant="destructive">Fail</Badge>;
   if (state === "checking") return <Badge variant="secondary">Checking…</Badge>;
   return <Badge variant="outline">Idle</Badge>;

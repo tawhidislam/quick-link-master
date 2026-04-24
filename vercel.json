@@ -1,13 +1,8 @@
 {
-  "version": 2,
-  "routes": [
+  "rewrites": [
     {
-      "src": "/assets/(.*)",
-      "dest": "dist/client/assets/$1"
-    },
-    {
-      "src": "/.*",
-      "dest": "api/index.js"
+      "source": "/:path*",
+      "destination": "https://link-love-it.lovable.app/:path*"
     }
   ]
 }

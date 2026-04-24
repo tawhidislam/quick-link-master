@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/",
+      "destination": "https://link-love-it.lovable.app"
+    },
+    {
       "source": "/:path*",
       "destination": "https://link-love-it.lovable.app/:path*"
     }
